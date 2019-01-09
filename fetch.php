@@ -5,18 +5,30 @@
     $con = new Conexao();
     $link = $con->conexao();
 
-    $request = mysqli_real_escape_string($link, $_POST["query"]);
+    $keyword = '%'.$_POST['keyword'].'%';
+    $tab = $_POST['tab'];
 
-    $query = "SELECT * FROM cessacao WHERE nome LIKE '%" . $request . "%'";
+    if(strcmp($tab, "nav-Motces") == 0){
+        $query = "SELECT * FROM cessacao WHERE (codigo LIKE (:keyword) OR nome LIKE (:keyword)) ORDER BY id_cessacao;";
+    } else if(strcmp($tab, "nav-Motsus") == 0) {
+        $query = "SELECT * FROM suspensao WHERE (codigo LIKE (:keyword) OR nome LIKE (:keyword)) ORDER BY id_suspensao;";
+    }    
+    $sql = $link->prepare($query);
     
-    $result = mysqli_query($link, $query);
+    $sql->bindParam(':keyword', $keyword, PDO::PARAM_STR);
 
-    $data = array();
+    $sql->execute();
+    
+    $list = $sql->fetchAll();
 
-    if(mysqli_num_rows($result) > 0) {
-        while ($row =  mysqli_fetch_assoc($result)) {
-            $data[] = $row["nome"];
+    if ($list != null){
+        foreach ($list as $rs) {
+            // put in bold the written text
+            $motivo = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', ($rs['codigo'] . ' - ' . $rs['nome']));
+            // add new option
+            echo '<li class="list-group-item" style="cursor: pointer" onclick="set_item(\''. ($rs['codigo'] . ' - ' . $rs['nome']) .'.\')">'.$motivo.'</li>';
         }
-        echo json_encode($data);
+    } else {
+        echo '<li class="list-group-item">'."Não existe motivo.".'</li>';
     }
 ?>

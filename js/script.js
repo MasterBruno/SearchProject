@@ -1,3 +1,8 @@
+window.onload = function (){
+	document.getElementById("navegar").onclick = function() {
+		autocomplet();
+	};	
+}
 
 function autocomplet() {
 	var keyword = $('#search').val();
@@ -25,3 +30,25 @@ function set_item(item) {
 	// hide proposition list
 	$('#sugestao').hide();
 }
+
+function enviar() {
+	var keyword = $('#search').val().split(' - ');
+	var codigo = keyword[0];
+	var tab = $('.tab-content .active').attr('id');
+	if(codigo != '') {
+		$.ajax({
+			url: 'search.php',
+			type: 'POST',
+			data: {codigo:codigo, tab:tab},
+			success:function(data){
+				$('#resultado').show();
+				$('#resultado').html(data);
+				$('#result')[0].scrollIntoView(true);
+			}
+		}); 
+	} else {
+		$('#resultado').fadeOut();
+		$('#resultado').html("");
+	}
+}
+

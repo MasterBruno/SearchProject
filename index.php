@@ -10,7 +10,7 @@
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
-    <title>INSS - Pesquisar Motivo</title>
+    <title>INSS - Consultar Motivo</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,15 +27,16 @@
   </head>
   <body>
     <div class="s006">
-      <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST">
+      <!--<form action="<?php $_SERVER['PHP_SELF'];?>" method="POST">-->
+      <form>
         <fieldset>
-          <legend class="text-center"><div class="display-3 font-weight-bold">Buscar Motivo <i class="fa fa-comments"></i></div></legend>
+          <legend class="text-center"><div class="display-3 font-weight-bold">Consultar Motivo <i class="fa fa-comments"></i></div></legend>
           <div class="container">
             <div class="">
               <nav id="navegar">
                 <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-Motces-tab" data-toggle="tab" href="#nav-Motces" role="tab" aria-controls="nav-Motces" aria-selected="true" onClick="autocomplete()">Motivo de Cessação</a>
-                  <a class="nav-item nav-link" id="nav-Motsus-tab" data-toggle="tab" href="#nav-Motsus" role="tab" aria-controls="nav-Motsus" aria-selected="false" onClick="autocomplete()">Motivo de Suspensão</a>
+                  <a class="nav-item nav-link active" id="nav-Motces-tab" data-toggle="tab" href="#nav-Motces" role="tab" aria-controls="nav-Motces" aria-selected="true">Motivo de Cessação</a>
+                  <a class="nav-item nav-link" id="nav-Motsus-tab" data-toggle="tab" href="#nav-Motsus" role="tab" aria-controls="nav-Motsus" aria-selected="false">Motivo de Suspensão</a>
                 </div>
               </nav>
               <br>
@@ -44,7 +45,10 @@
                     <div class="input-group add-on">
                       <input class="form-control" autocomplete="off" placeholder="Digite aqui..." name="search" id="search" type="text" onkeyup="autocomplet()">
                       <div class="input-group-btn">
-                        <button class="btn btn-primary button1" type="submit" name="pesquisar"><i class="fa fa-search col-md-12"><a href="#resultado" class="js-scroll-trigger"></a></i></button>
+                        <!--
+                        <input class="btn btn-primary button1" id="submit" onclick="enviar()" type="button" value="Pesquisar">
+                        -->
+                        <button class="btn btn-primary button2" type="button" name="pesquisar" onClick="enviar()"><i class="fa fa-search col-md-12 js-scroll-trigger"><a href="#resultado" class="js-scroll-trigger"></a></i></button>
                       </div>
                       <div class="tab-pane fade show active" id="nav-Motces" role="tabpanel" aria-labelledby="nav-Motces-tab">
                       </div>
@@ -62,7 +66,7 @@
                 </div>
               </div>
               <div class="text-white font-weight-bold float-right">
-                Deseja fazer o download da planilha? <a class="text-warning" href="download.php">Clique Aqui.</a>
+                Deseja fazer o download da planilha? <a class="text-warning" href="./download.php">Clique Aqui.</a>
               </div>
             </div>
           </div>
@@ -70,116 +74,12 @@
       </form>
     </div>
     
-    <?php 
-      if (isset($_POST["pesquisar"])) {
-        $text = explode(" - ", $_POST["search"], 2);
-        $cod = $text[0];
-        if(empty($cod)) {
-          echo "<script language='javascript' type='text/javascript'>alert('Informe algo à pesquisar!');</script>";
-        } else {
-          //  Realiza a conexao com a base de dados
-          $con = new Conexao();
-          $link = $con->conexao();
-
-          $link->beginTransaction();
-
-          $tab = "<script>
-                    document.write('nav-Motces');
-                  </script>";
-          echo $tab;
-
-          if($tab == "nav-Motces"){
-            $query = "SELECT * FROM cessacao WHERE codigo = $cod LIMIT 1;";
-          } else {
-            $query = "SELECT * FROM suspensao WHERE codigo = $cod LIMIT 1;";          
-          }
-          
-          $sql = $link->prepare($query);
-          
-          $sql->execute();
-
-          $linha = $sql->fetch(PDO::FETCH_ASSOC);
-
-          if($linha != null){
-          /*
-          echo "<script language='javascript' type='text/javascript'>alert('Pesquisando...!');</script>";
-          */
-    ?>
-
-    <div class="jumbotron jumbotron-fluid" id="resultado">
-      <div class="container">
-        
-        <form>
-          <div class="form-row">
-            <div class="form-group col-md-1">
-              <label class="font-weight-bold" for="inputMotivo">Código</label>
-              <input type="text" class="form-control" id="inputMotivo" value="<?php echo $linha[codigo]; ?>" name="codigo" disabled>
-            </div>
-            <div class="form-group col-md-11">
-              <label class="font-weight-bold" for="inputNome">Nome</label>
-              <input type="text" class="form-control" id="inputNome" placeholder="Nome" name="nome" value="<?php echo $linha[nome]; ?>" disabled>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              <label class="font-weight-bold" for="inputFin">Conceito e Finalidade</label>
-              <textarea class="form-control" id="inputFin" rows="5" name="conceito" disabled><?php echo $linha[conc_final]; ?></textarea>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              <label class="font-weight-bold" for="inputSit">Situação</label>
-              <textarea class="form-control" id="inputSit" rows="5" name="situacao" disabled><?php echo $linha[situacao]; ?></textarea>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              <label class="font-weight-bold" for="inputReativ">Motivos de Reativação</label>
-              <div class="row" id="inputReativ">
-                <div class="col-md-12">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-PRISMA" role="tab" aria-controls="nav-home" aria-selected="true">PRISMA SABI</a>
-                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-REATNB" role="tab" aria-controls="nav-profile" aria-selected="false">REATNB</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade" id="nav-PRISMA" role="tabpanel" aria-labelledby="nav-home-tab">
-                      <br>
-                      <textarea class="form-control" id="inputPrisma" rows="3" name="prisma" disabled><?php echo $linha[prisma_sabi]; ?></textarea>
-
-                    </div>
-                    <div class="tab-pane fade" id="nav-REATNB" role="tabpanel" aria-labelledby="nav-profile-tab">
-                      <br>
-                      <textarea class="form-control" id="inputReatnb" rows="3" name="reatnb" disabled><?php echo $linha[reatnb_plenus]; ?></textarea>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+    <div class="container">
+      <div id="resultado">
       </div>
-
-      <?php
-              if(empty($linha[prisma_sabi])){
-                echo 1;
-                echo "<script language='javascript' type='text/javascript'>$('#nav-home-tab').hide();</script>";
-              }
-              if(empty($linha[reatnb_plenus])){
-                echo 2;
-                echo "<script language='javascript' type='text/javascript'>$('#nav-profile-tab').hide();</script>";
-              } 
-            } else {
-              echo "<script language='javascript' type='text/javascript'>alert('Resultado não encontrado!');</script>";
-            }
-          }
-        }
-      ?>
     </div>
-
-    <!-- Bootstrap core JavaScript-->
+	
+	<!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

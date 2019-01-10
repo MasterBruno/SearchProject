@@ -4,6 +4,7 @@
 </head>
 <body>
     <?php
+		error_reporting(0);
         require_once "./mysql.php";
         require_once "Classes/PHPExcel.php";
 
@@ -11,7 +12,7 @@
         $con = new Conexao();
         $link = $con->conexao();
 
-        $tmpfname = "suspensao.xls";
+        $tmpfname = "cessacao.xls";
         $excelReader = PHPExcel_IOFactory::createReaderForFile($tmpfname);
         $excelObj = $excelReader->load($tmpfname);
         $worksheet = $excelObj->getSheet(0);
@@ -23,7 +24,7 @@
                 $quebra = explode(" - ", $worksheet->getCell('A'.$row)->getValue(), 2);
                 //  echo "<pre>" . print_r($quebra) . "</pre>";
                 //  Insere no banco de dados
-                $query = "INSERT INTO suspensao(codigo, nome, conc_final, prisma_sabi, reatnb_plenus, situacao) 
+                $query = "INSERT INTO cessacao(codigo, nome, conc_final, prisma_sabi, reatnb_plenus, situacao) 
                 VALUES ('" . $quebra[0] . "',
                         '" . $quebra[1] . "',
                         '" . $worksheet->getCell('B'.$row)->getValue() . "',

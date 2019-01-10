@@ -13,6 +13,8 @@
         //  $this->link = new PDO("mysql:host=$this->servername;dbname=$this->database;charset=utf8", "$this->username", "$this->password");
         //  Versão Local - Bruno
         $this->link = new PDO("mysql:host=localhost;dbname=Motivos;charset=utf8", "root", "");
+        //  Versão INSS - Bruno
+        //  $this->link = new PDO("mysql:host=localhost;dbname=motivos;charset=utf8", "root", "root10");
         
         $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }

@@ -819,7 +819,7 @@ legend {
   -ms-flex-align: center;
       align-items: center;
   font-family: 'Poppins', sans-serif;
-  background: url("../images/Search_01.jpg");
+  background: url("../images/Search_07.jpg");
   background-size: cover;
   background-position: center center;
   padding: 15px;
@@ -954,9 +954,21 @@ legend {
 
 /* Button1 */
   .button1 {
-    padding: 10px 15px 10px 15px !important;
+    padding: 6px 15px 6px 15px !important;
   }
 /* Fim - Button1 */
+
+/* Button2 */
+.button2 {
+  padding: 10px 25px 10px 25px !important;
+}
+/* Fim - Button1 */
+
+/* Result */
+.result {
+  margin-top: 50px !important;
+}
+/* Fim - result */
 
 @media screen and (max-width: 767px) {
   .s006 form .inner-form .input-field {

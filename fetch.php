@@ -9,9 +9,9 @@
     $tab = $_POST['tab'];
 
     if(strcmp($tab, "nav-Motces") == 0){
-        $query = "SELECT * FROM cessacao WHERE (codigo LIKE (:keyword) OR nome LIKE (:keyword)) ORDER BY id_cessacao;";
+        $query = "SELECT * FROM cessacao WHERE (concat(codigo,' - ', nome) LIKE (:keyword)) ORDER BY id_cessacao;";
     } else if(strcmp($tab, "nav-Motsus") == 0) {
-        $query = "SELECT * FROM suspensao WHERE (codigo LIKE (:keyword) OR nome LIKE (:keyword)) ORDER BY id_suspensao;";
+        $query = "SELECT * FROM suspensao WHERE (concat(codigo,' - ', nome) LIKE (:keyword)) ORDER BY id_suspensao;";
     }    
     $sql = $link->prepare($query);
     
@@ -26,7 +26,7 @@
             // put in bold the written text
             $motivo = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', ($rs['codigo'] . ' - ' . $rs['nome']));
             // add new option
-            echo '<li class="list-group-item" style="cursor: pointer" onclick="set_item(\''. ($rs['codigo'] . ' - ' . $rs['nome']) .'.\')">'.$motivo.'</li>';
+            echo '<li class="list-group-item" style="cursor: pointer" onclick="set_item(\''. ($rs['codigo'] . ' - ' . $rs['nome']) .'\')">'.$motivo.'</li>';
         }
     } else {
         echo '<li class="list-group-item">'."Não existe motivo.".'</li>';

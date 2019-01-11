@@ -80,7 +80,8 @@
 				echo '<script>
 					document.getElementById("nav-home-tab").disabled = true;
 				</script>';
-			} else if($linha['reatnb_plenus'] == null){
+			} 
+			if($linha['reatnb_plenus'] == null){
 				echo '<script>
 					document.getElementById("nav-profile-tab").disabled = true;
 				</script>';

@@ -1,15 +1,22 @@
-<?php
-  require_once './mysql.php';
-  error_reporting(0);
-?>
 <html lang="pt_BR">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
     <title>INSS - Consultar Motivo</title>
+
+    <!--[if lt IE 9]>
+      <script src="js/ie8-responsive-file-warning.js"></script>
+    <![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +42,7 @@
               <div class="tab-content" id="nav-tabContent">
                   <div class="inner-form">
                     <div class="input-group add-on">
-                      <input class="form-control" autocomplete="off" placeholder="Digite aqui..." name="search" id="search" type="text" onkeyup="autocomplet()">
+                      <input class="form-control" autocomplete="off" placeholder="Digite aqui..." name="search" id="search" type="text">
                       <div class="input-group-btn">
                         <button class="btn btn-primary button2" type="button" name="pesquisar" onClick="enviar()"><i class="fa fa-search col-md-12 js-scroll-trigger"><a href="#resultado" class="js-scroll-trigger"></a></i></button>
                       </div>
@@ -75,6 +82,9 @@
     <!-- Scripts para funções -->
     <script type="text/javascript" src="js/script.js"></script>
     
+    <script>
+      
+    </script>
   </body>
 </html>
 

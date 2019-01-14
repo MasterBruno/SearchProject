@@ -1,4 +1,7 @@
 window.onload = function (){
+	document.getElementById("search").onkeyup = function() {
+        autocomplet();
+    };
 	document.getElementById("navegar").onclick = function() {
 		autocomplet();
 	};	
@@ -41,9 +44,11 @@ function enviar() {
 			type: 'POST',
 			data: {codigo:codigo, tab:tab},
 			success:function(data){
-				$('#resultado').show();
-				$('#resultado').html(data);
-				$('#result')[0].scrollIntoView(true);
+				setTimeout(function() {
+					$('#resultado').show();
+					$('#resultado').html(data);
+					$('#result')[0].scrollIntoView(true);
+				}, 100);
 			}
 		}); 
 	} else {

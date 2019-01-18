@@ -29,3 +29,13 @@ CREATE TABLE `suspensao` (
   `situacao` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id_suspensao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+--
+-- Table structure for table `reativacao`
+--
+CREATE TABLE `reativacao` (
+  `id_reativacao` INT(11) NOT NULL AUTO_INCREMENT,
+  `codigo` VARCHAR(11) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_reativacao`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;

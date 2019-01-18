@@ -3,7 +3,7 @@ window.onload = function (){
         autocomplet();
     };
 	document.getElementById("navegar").onclick = function() {
-		autocomplet();
+		set_item('');
 	};	
 }
 
@@ -54,6 +54,7 @@ function enviar() {
 	} else {
 		$('#resultado').fadeOut();
 		$('#resultado').html("");
+		alert("Informe e selecione um motivo!");
 	}
 }
 

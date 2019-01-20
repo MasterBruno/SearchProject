@@ -34,8 +34,8 @@
             <div class="">
               <nav id="navegar">
                 <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-Motces-tab" data-toggle="tab" href="#nav-Motces" role="tab" aria-controls="nav-Motces" aria-selected="true">Motivo de Cessação</a>
-                  <a class="nav-item nav-link" id="nav-Motsus-tab" data-toggle="tab" href="#nav-Motsus" role="tab" aria-controls="nav-Motsus" aria-selected="false">Motivo de Suspensão</a>
+                  <a class="nav-item nav-link active" id="nav-Motces-tab" data-toggle="tab" href="#nav-Motces" role="tab" aria-controls="nav-Motces" aria-selected="true" onClick="set_item('')">Motivo de Cessação</a>
+                  <a class="nav-item nav-link" id="nav-Motsus-tab" data-toggle="tab" href="#nav-Motsus" role="tab" aria-controls="nav-Motsus" aria-selected="false" onClick="set_item('')">Motivo de Suspensão</a>
                 </div>
               </nav>
               <br>
@@ -62,7 +62,7 @@
                 </div>
               </div>
               <div class="text-white font-weight-bold float-right">
-                Deseja fazer o download da planilha? <a class="text-warning" href="./download.php">Clique Aqui.</a>
+                Deseja fazer o download da planilha? <a class="text-warning" href="./Tabela.xls" download>Clique Aqui.</a>
               </div>
             </div>
           </div>

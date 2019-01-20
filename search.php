@@ -19,7 +19,7 @@
 
     $sql->execute();
     
-		$linha = $sql->fetch(PDO::FETCH_ASSOC);
+	$linha = $sql->fetch(PDO::FETCH_ASSOC);
 		
 	if ($linha != null){
 		echo '
@@ -54,26 +54,69 @@
 					  <nav>
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
 							<a class="nav-item nav-link ';
-							if($linha['prisma_sabi'] != null){ echo "active"; } 
+							if($linha['prisma_sabi'] != null){ echo "active"; } else { echo "disabled";}
 							echo '" id="nav-home-tab" data-toggle="tab" href="#nav-PRISMA" role="tab" aria-controls="nav-home" aria-selected="true">PRISMA SABI</a>
 							<a class="nav-item nav-link ';
-							if($linha['reatnb_plenus'] != null){ if($linha['prisma_sabi'] == null) { echo "active"; }} 
+							if($linha['reatnb_plenus'] != null){ if($linha['prisma_sabi'] == null) { echo "active"; }} else { echo "disabled";}
 							echo '" id="nav-profile-tab" data-toggle="tab" href="#nav-REATNB" role="tab" aria-controls="nav-profile" aria-selected="false">REATNB</a>
 						</div>
 					  </nav>
 					  <div class="tab-content" id="nav-tabContent">
+						
 						<div class="tab-pane fade ';
 						if($linha['prisma_sabi'] != null){ echo "active show"; }
 						echo '" id="nav-PRISMA" role="tabpanel" aria-labelledby="nav-home-tab">
 						  <br>
-						  <textarea class="form-control" id="inputPrisma" rows="3" name="prisma" disabled>' . $linha['prisma_sabi'] . '</textarea>
+						  <textarea class="form-control" id="inputPrisma" rows="3" name="prisma" disabled>';
+
+						  $string  = str_replace("e", ",", $linha['prisma_sabi']);
+						  $motivos = explode(",", $string);
+						  
+						  foreach ($motivos as $value) {
+							$value = trim($value);
+							
+							$query1 = "SELECT * FROM reativacao WHERE codigo = (:codigo) LIMIT 1;";
+						  
+							$sql1 = $link->prepare($query1);
+    
+							$sql1->bindParam(':codigo', $value, PDO::PARAM_STR);
+
+							$sql1->execute();
+							
+							$linha1 = $sql1->fetch(PDO::FETCH_ASSOC);
+							
+							echo $linha1['codigo'] . ' - ' . $linha1['nome'] . "\n";
+						  }
+						  
+						  echo '</textarea>
 
 						</div>
-						<div class="tab-pane fade ';;
-						if($linha['reatnb_plenus'] != null){ if($linha['prisma_sabi'] == null) { echo "active show"; }} 
+						
+						<div class="tab-pane fade ';
+						if($linha['reatnb_plenus'] != null){if($linha['prisma_sabi'] == null) { echo "active "; }  echo "show";} else { echo "disabled";} 
 						echo '" id="nav-REATNB" role="tabpanel" aria-labelledby="nav-profile-tab">
 						<br>
-						  <textarea class="form-control" id="inputReatnb" rows="3" name="reatnb" disabled>' . $linha['reatnb_plenus'] . '</textarea>
+						  <textarea class="form-control" id="inputReatnb" rows="3" name="reatnb" disabled>'; 
+						  
+						  $string  = str_replace("e", ",", $linha['reatnb_plenus']);
+						  $motivos = explode(",", $string);
+						  
+						  foreach ($motivos as $value) {
+							$value = trim($value);
+							$query1 = "SELECT * FROM reativacao WHERE codigo = (:codigo) LIMIT 1;";
+						  
+							$sql1 = $link->prepare($query1);
+    
+							$sql1->bindParam(':codigo', $value, PDO::PARAM_STR);
+
+							$sql1->execute();
+							
+							$linha1 = $sql1->fetch(PDO::FETCH_ASSOC);
+							
+							echo $linha1['codigo'] . ' - ' . $linha1['nome'] . "\n";
+						  }
+						  
+						  echo '</textarea>
 
 						</div>
 					  </div>
@@ -84,16 +127,7 @@
 			</form>
 			';
 
-			if($linha['prisma_sabi'] == null){				
-				echo '<script>
-					document.getElementById("nav-home-tab").disabled = true;
-				</script>';
-			} 
-			if($linha['reatnb_plenus'] == null){
-				echo '<script>
-					document.getElementById("nav-profile-tab").disabled = true;
-				</script>';
-			}			
+						
   } else {
 		echo "<script language='javascript' type='text/javascript'>alert('Resultado não encontrado!');</script>";
 	}

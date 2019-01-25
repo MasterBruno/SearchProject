@@ -16,12 +16,6 @@
     $excelReader = PHPExcel_IOFactory::createReaderForFile($tmpfname);
     $excelObj = $excelReader->load($tmpfname);
     
-    /*
-    $tmpfname = "cessacao.xls";
-    $excelReader = PHPExcel_IOFactory::createReaderForFile($tmpfname);
-    $excelObj = $excelReader->load($tmpfname);
-    */
-
     $worksheet = $excelObj->getSheet(0);
     $lastRow = $worksheet->getHighestRow();
     
@@ -37,12 +31,6 @@
         }
         //  echo "Sucesso!<br>"; 
     }
-
-    /*
-    $tmpfname = "cessacao.xls";
-    $excelReader = PHPExcel_IOFactory::createReaderForFile($tmpfname);
-    $excelObj = $excelReader->load($tmpfname);
-    */
 
     $worksheet = $excelObj->getSheet(1);
     $lastRow = $worksheet->getHighestRow();

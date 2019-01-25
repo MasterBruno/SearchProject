@@ -42,7 +42,7 @@
               <div class="tab-content" id="nav-tabContent">
                   <div class="inner-form">
                     <div class="input-group add-on">
-                      <input class="form-control" autocomplete="off" placeholder="Digite aqui..." name="search" id="search" type="text">
+                      <input class="form-control" autocomplete="off" placeholder="Digite aqui..." name="search" id="search" type="text" onFocus="set_item('')">
                       <div class="input-group-btn">
                         <button class="btn btn-primary button2" type="button" name="pesquisar" onClick="enviar()"><i class="fa fa-search col-md-12 js-scroll-trigger"><a href="#resultado" class="js-scroll-trigger"></a></i></button>
                       </div>

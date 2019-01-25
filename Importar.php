@@ -7,7 +7,7 @@
     $con = new Conexao();
     $link = $con->conexao();
     
-    $query = file_get_contents('creator.sql');
+    $query = file_get_contents('SQL/creator.sql');
     $sql = $link->prepare($query);
     $sql->execute();
 
@@ -85,4 +85,10 @@
         }
         //  echo "Sucesso!<br>"; 
     }
+
+    echo '
+        <script language= "JavaScript">
+            location.href="index.php";
+        </script>
+    ';
 ?>

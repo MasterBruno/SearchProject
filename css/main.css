@@ -102,6 +102,33 @@
 }
 /* Fim - result */
 
+/* Botão Scroll */
+.scroll_btn {
+  border:0;
+  background-color: #007bff;
+  border-radius: 25px;
+  color:#fff;
+  padding:1rem;
+  font-size: 1rem;
+  position: fixed;
+  bottom:1rem;
+  right: 1rem;
+   }
+/* Fim - Botão Scroll */
+
+/* Botão fechar */
+.fechar_btn {
+  border:0;
+  background-color: transparent;
+  border-radius: 15px;
+  color:black;
+  padding:1rem;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 1rem;
+}
+/* Fim - Botão fechar */
+
 @media screen and (max-width: 767px) {
   .s006 form .inner-form .input-field {
     margin-bottom: 20px;

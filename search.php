@@ -23,8 +23,10 @@
 		
 	if ($linha != null){
 		echo '
-			<form class="result" id="result">
-			  <div class="form-row">
+		<button type="button" style="cursor:pointer;" class="fechar_btn" id="fechar" onClick="fechar()"><i class="fa fa-times"></i></button>
+		<form class="result" id="result">
+				<div class="form-row">
+
 				<div class="form-group col-md-1">
 				  <label class="font-weight-bold" for="inputMotivo">Código</label>
 				  <input type="text" class="form-control" id="inputMotivo" value="' . $linha['codigo'] .'" name="codigo" disabled>
@@ -123,7 +125,7 @@
 					</div>
 				  </div>
 				</div>
-				<button type="button" style="cursor:pointer;" class="btn btn-secondary fixed-bottom pull-right position-fixed" id="scroll_top" onClick="toTopo()"><i class="fa fa-arrow-up"></i></button>
+				<button type="button" style="cursor:pointer;" class="scroll_btn " id="scroll_top" onClick="toTopo()"><i class="fa fa-arrow-up"></i></button>
 			  </div>
 				</form>
 			';

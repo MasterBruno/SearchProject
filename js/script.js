@@ -59,8 +59,28 @@ function enviar() {
 }
 
 function toTopo(){
-	$("#scroll_top").click(function(){
-		$('#topo')[0].scrollIntoView(true);
+	var subir = $('#scroll_top');
+	
+	subir.on('click', function(){
+		$('body, html').animate({scrollTop: 0 },500)
+		setTimeout(function(){
+			set_item('');
+			$('#scroll_top').fadeOut();
+		},450);
+	});
+}
+
+function fechar(){
+	var fechar = $('#fechar');
+
+	fechar.on('click', function(){
+		$('body, html').animate({scrollTop: 0 },500)
+		setTimeout(function(){
+			set_item('');
+			$('#resultado').fadeOut();
+			$('#resultado').html("");
+			$('#scroll_top').fadeOut();
+		},450);
 	});
 }
 

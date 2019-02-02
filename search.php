@@ -123,8 +123,9 @@
 					</div>
 				  </div>
 				</div>
+				<button type="button" style="cursor:pointer;" class="btn btn-secondary fixed-bottom pull-right position-fixed" id="scroll_top" onClick="toTopo()"><i class="fa fa-arrow-up"></i></button>
 			  </div>
-			</form>
+				</form>
 			';
 
 						

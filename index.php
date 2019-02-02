@@ -26,7 +26,7 @@
 
   </head>
   <body>
-    <div class="s006">
+    <div class="s006" id="topo">
       <form>
         <fieldset>
           <legend class="text-center"><div class="display-3 font-weight-bold">Consultar Motivo <i class="fa fa-comments"></i></div></legend>

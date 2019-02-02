@@ -58,3 +58,9 @@ function enviar() {
 	}
 }
 
+function toTopo(){
+	$("#scroll_top").click(function(){
+		$('#topo')[0].scrollIntoView(true);
+	});
+}
+

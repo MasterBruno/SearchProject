@@ -65,6 +65,8 @@ function toTopo(){
 		$('body, html').animate({scrollTop: 0 },500)
 		setTimeout(function(){
 			set_item('');
+			$('#resultado').fadeOut();
+			$('#resultado').html("");
 			$('#scroll_top').fadeOut();
 		},450);
 	});

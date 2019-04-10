@@ -31,24 +31,25 @@
         <form class="branco" id="cadastro">
             
             <div class="branco">
-                <label class="font-weight-bold" for="Tmotivo">Selecione o tipo do motivo</label>
-                <div class="form-row" id="Tmotivo">
-                    <div class="form-group col-md-6 radio">
-                        <input class="" type="radio" name="tipo_Motiv" id="cessacao" placeholder="Cessação">
-                        <label class="" for="cessacao">Motivo de Cessação</label>
+                <label class="font-weight-bold" for="Tmotivo">Tipo do Motivo:</label>
+                <div class="" id="Tmotivo">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo_Motiv" id="cessacao" placeholder="Cessação" value="cessacao">
+                        <label class="form-check-label" for="cessacao">Cessação</label>
                     </div>
-                    <div class="form-group col-md-6">
-                        <input type="radio" name="tipo_Motiv" id="suspensao" placeholder="Suspensão">
-                        <label class="" for="suspensao">Motivo de Suspensão</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo_Motiv" id="suspensao" placeholder="Suspensão" value="suspensao">
+                        <label class="form-check-label" for="suspensao">Suspensão</label>
                     </div>
                 </div>
+                <br><br>
                 <div class="form-row">
-                    <div class="form-group col-md-1">
-                        <label class="font-weight-bold" for="inputMotivo" required>Código</label>
-                        <input type="text" class="form-control" id="inputMotivo" name="codigo">
+                    <div class="form-group col-md-1" id="cod">
+                        <label class="font-weight-bold" for="inputMotivo">Código</label>
+                        <input type="text" class="form-control" id="inputMotivo" name="codigo" placeholder="Código" onfocusout="verificaCod()">
                     </div>
                     <div class="form-group col-md-11">
-                        <label class="font-weight-bold" for="inputNome" required>Nome</label>
+                        <label class="font-weight-bold" for="inputNome">Nome</label>
                         <input type="text" class="form-control" id="inputNome" placeholder="Nome" name="nome">
                     </div>
                 </div>
@@ -94,7 +95,7 @@
 
     <!-- Scripts para funções -->
     <script type="text/javascript" src="js/script.js"></script>
-    
+        
     <script>
       
     </script>

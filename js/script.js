@@ -26,6 +26,36 @@ function autocomplet() {
 	}
 }
 
+function verificaCod(){
+	var key = $("input[name=codigo]").val();
+	var tab = $("input[name=tipo_Motiv]").val();
+	var query = "SELECT * FROM `" + tab + "` WHERE `codigo` = '" + key + "';";
+	//alert(query);
+	if(key != '') {
+		if(key.length == 1){
+			key = "0" + key;
+		}
+		$.ajax({
+			url: 'buscaCod.php',
+			type: 'POST',
+			data: {key:key, tab:tab},
+			success:function(data){
+				//alert(data);
+				if(data >= 0){
+					//alert("Existe registro!");
+					//$("input[name=codigo]").classList.remove("has-success");
+					$('#cod').addClass("has-success");
+				} else {
+					//alert("Não Existe registro!");
+					//$("input[name=codigo]").classList.remove("has-danger");
+					$("input[name=codigo]").addClass("has-danger");
+				}
+			}
+		}); 
+	} else {
+	}
+}  
+
 // set_item : this function will be executed when we select an item
 function set_item(item) {
 	// change input value
